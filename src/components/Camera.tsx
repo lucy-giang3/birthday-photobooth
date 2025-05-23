@@ -229,6 +229,7 @@ const Camera: React.FC = () => {
               className="w-full h-full object-cover rounded-[1px]"
               style={{
                 transform: "scaleX(-1)",
+                aspectRatio: `${videoAspectRatio}`,
               }}
             />
 
