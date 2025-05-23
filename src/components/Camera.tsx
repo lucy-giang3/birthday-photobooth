@@ -11,7 +11,7 @@ const Camera: React.FC = () => {
   const [flash, setFlash] = useState<boolean>(false);
   const [videoAspectRatio, setVideoAspectRatio] = useState<number>(16 / 9);
   const frameImage = "./birthday-photobooth/assets/frame.png";
-  // const frameImage = "birthday-photobooth/assets/frame.png";
+  // const frameImage = "./assets/frame.png";
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -67,10 +67,10 @@ const Camera: React.FC = () => {
   }, [isCapturing, countdown, capturedCount]);
 
   const overlayImages = [
-    "./birthday-photobooth/assets/pose1.png",
-    "./birthday-photobooth/assets/pose2.png",
-    "./birthday-photobooth/assets/pose3.png",
-    "./birthday-photobooth/assets/pose4.png",
+    "./assets/pose1.png",
+    "/assets/pose2.png",
+    "./assets/pose3.png",
+    "./public/assets/pose4.png",
   ];
 
   useEffect(() => {
