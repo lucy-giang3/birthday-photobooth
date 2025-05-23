@@ -10,8 +10,8 @@ const Camera: React.FC = () => {
   const [showCameraFeed, setShowCameraFeed] = useState<boolean>(true);
   const [flash, setFlash] = useState<boolean>(false);
   const [videoAspectRatio, setVideoAspectRatio] = useState<number>(16 / 9);
-  const frameImage = "./birthday-photobooth/assets/frame.png";
-  // const frameImage = "./assets/frame.png";
+  // const frameImage = "./birthday-photobooth/assets/frame.png";
+  const frameImage = "./assets/frame.png";
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -68,9 +68,9 @@ const Camera: React.FC = () => {
 
   const overlayImages = [
     "./assets/pose1.png",
-    "/assets/pose2.png",
+    "./assets/pose2.png",
     "./assets/pose3.png",
-    "./public/assets/pose4.png",
+    "./assets/pose4.png",
   ];
 
   useEffect(() => {

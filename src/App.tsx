@@ -11,7 +11,8 @@ const App: React.FC = () => {
           src="./assets/sitelogo.png"
           //src="birthday-photobooth/assets/sitelogo.png"
           alt="Site Logo"
-          className="h-[10%] sm:h-[15%] md:h-[20%] lg:h-[25%] max-w-[90%] w-auto"
+          className="h-auto max-w-[20%] w-auto mx-auto"
+          style={{ display: "inline" }}
         />
       </div>
 
