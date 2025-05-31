@@ -34,6 +34,7 @@ const Camera: React.FC = () => {
       } else {
         alert("Your browser does not support camera access.");
       }
+      console.log("Can access camera?", !!navigator.mediaDevices?.getUserMedia);
     }
 
     return () => {
@@ -72,6 +73,7 @@ const Camera: React.FC = () => {
     }
   }, [isCapturing, countdown, capturedCount]);
 
+  /* web testing */
   const overlayImages = [
     "./assets/pose1.png",
     "./assets/pose2.png",
@@ -79,15 +81,14 @@ const Camera: React.FC = () => {
     "./assets/pose4.png",
   ];
 
-  /** local testing
+  /* local testing  
   const overlayImages = [
     "./birthday-photobooth/assets/pose1.png",
     "./birthday-photobooth/assets/pose2.png",
     "./birthday-photobooth/assets/pose3.png",
     "./birthday-photobooth/assets/pose4.png",
   ];
-  */
-
+*/
   useEffect(() => {
     overlayImages.forEach((src) => {
       const img = new Image();
@@ -188,6 +189,7 @@ const Camera: React.FC = () => {
     setCapturedCount(0);
     setPhotos([]);
     setCountdown(5);
+    setShowCameraFeed(true);
   };
 
   const saveImageWithFrame = () => {
@@ -257,7 +259,6 @@ const Camera: React.FC = () => {
               <button
                 onClick={() => {
                   setUseOverlays(true);
-                  setShowCameraFeed(true);
                 }}
                 className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
               >
@@ -266,7 +267,6 @@ const Camera: React.FC = () => {
               <button
                 onClick={() => {
                   setUseOverlays(false);
-                  setShowCameraFeed(true);
                 }}
                 className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
               >
