@@ -7,7 +7,7 @@ const Camera: React.FC = () => {
   const [countdown, setCountdown] = useState<number>(0);
   const [isCapturing, setIsCapturing] = useState<boolean>(false);
   const [capturedCount, setCapturedCount] = useState<number>(0);
-  const [showCameraFeed, setShowCameraFeed] = useState<boolean>(true);
+  const [showCameraFeed, setShowCameraFeed] = useState<boolean>(false);
   const [flash, setFlash] = useState<boolean>(false);
   const [videoAspectRatio, setVideoAspectRatio] = useState<number>(16 / 9);
   const [useOverlays, setUseOverlays] = useState<boolean | null>(null);
@@ -18,33 +18,42 @@ const Camera: React.FC = () => {
   const regularFrameImage = "./assets/frame2.png";
 
   useEffect(() => {
-    if (showCameraFeed) {
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia({ video: true })
-          .then((stream) => {
-            if (videoRef.current) {
-              videoRef.current.srcObject = stream;
-            }
-          })
-          .catch((err) => {
-            console.error("Error accessing camera:", err);
-            alert("Please allow camera access.");
-          });
-      } else {
-        alert("Your browser does not support camera access.");
+    if (!showCameraFeed) {
+      // If hiding camera feed, stop the camera
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach((track) => track.stop());
+        videoRef.current.srcObject = null;
       }
-      console.log("Can access camera?", !!navigator.mediaDevices?.getUserMedia);
+      return;
     }
 
+    // Start camera when showCameraFeed becomes true
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          if (videoRef.current) {
+            videoRef.current.srcObject = stream;
+          }
+        })
+        .catch((err) => {
+          alert("Please allow camera access.");
+          console.error("Error accessing camera:", err);
+        });
+    } else {
+      alert("Your browser does not support camera access.");
+    }
+
+    // Cleanup: stop camera when unmount or when showCameraFeed changes
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const stream = videoRef.current.srcObject as MediaStream;
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
+        videoRef.current.srcObject = null;
       }
     };
-  }, []);
+  }, [showCameraFeed]);
 
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
@@ -259,6 +268,7 @@ const Camera: React.FC = () => {
               <button
                 onClick={() => {
                   setUseOverlays(true);
+                  setShowCameraFeed(true);
                 }}
                 className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
               >
@@ -267,6 +277,7 @@ const Camera: React.FC = () => {
               <button
                 onClick={() => {
                   setUseOverlays(false);
+                  setShowCameraFeed(true);
                 }}
                 className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
               >
