@@ -18,20 +18,22 @@ const Camera: React.FC = () => {
   const regularFrameImage = "./assets/frame2.png";
 
   useEffect(() => {
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices
-        .getUserMedia({ video: true })
-        .then((stream) => {
-          if (videoRef.current) {
-            videoRef.current.srcObject = stream;
-          }
-        })
-        .catch((err) => {
-          console.error("Error accessing camera:", err);
-          alert("Please allow camera access.");
-        });
-    } else {
-      alert("Your browser does not support camera access.");
+    if (showCameraFeed) {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((stream) => {
+            if (videoRef.current) {
+              videoRef.current.srcObject = stream;
+            }
+          })
+          .catch((err) => {
+            console.error("Error accessing camera:", err);
+            alert("Please allow camera access.");
+          });
+      } else {
+        alert("Your browser does not support camera access.");
+      }
     }
 
     return () => {
