@@ -15,7 +15,7 @@ const Camera: React.FC = () => {
   //const regularFrameImage = "./birthday-photobooth/assets/frame2.png";
   //const frameImage = "./birthday-photobooth/assets/frame.png";
   const frameImage = "./assets/frame.png";
-  const regularFrameImage = = "./assets/frame2.png";
+  const regularFrameImage = "./assets/frame2.png";
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -70,14 +70,12 @@ const Camera: React.FC = () => {
     }
   }, [isCapturing, countdown, capturedCount]);
 
-  
   const overlayImages = [
     "./assets/pose1.png",
     "./assets/pose2.png",
     "./assets/pose3.png",
     "./assets/pose4.png",
   ];
-  
 
   /** local testing
   const overlayImages = [
