@@ -249,7 +249,7 @@ const Camera: React.FC = () => {
         */}
         <>
           {showCameraFeed && (
-            <div className="relative w-full max-w-[90vw] sm:max-w-[640px] aspect-video border-[6px] border-[#b3cb9f] shadow-md">
+            <div className="relative w-full max-w-[90vw] sm:max-w-[640px] aspect-video border-[6px] border-[#dde1dd] shadow-md">
               <video
                 ref={videoRef}
                 autoPlay
