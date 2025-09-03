@@ -215,7 +215,7 @@ const Camera: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-full bg-[#96bbfe]">
+    <div className="flex justify-center items-center h-full bg-[#b3cb9f]">
       <div className="flex flex-col items-center">
         {/* Commented out choice between overlays and regular */}
         {/*
@@ -249,7 +249,7 @@ const Camera: React.FC = () => {
         */}
         <>
           {showCameraFeed && (
-            <div className="relative w-full max-w-[90vw] sm:max-w-[640px] aspect-video border-[6px] border-[#dde1dd] shadow-md">
+            <div className="relative w-full max-w-[90vw] sm:max-w-[640px] aspect-video border-[6px] border-[#b3cb9f] shadow-md">
               <video
                 ref={videoRef}
                 autoPlay
